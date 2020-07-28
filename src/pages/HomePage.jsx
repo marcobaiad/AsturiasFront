@@ -17,7 +17,7 @@ const HomePages = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await clienteAxios.get('/api/v1/comidas')
+      const response = await clienteAxios.get('https://asturiasrestorant.herokuapp.com/api/v1/comidas')
       setPlatosHome(response.data);
       setRenderMomento(response.data);
 
@@ -81,7 +81,7 @@ const HomePages = () => {
     <article key={p._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
       <Link onClick={Logueado} to={'plato/' + p._id}>
         <img className="w-100 PlatosHomeimg"
-          src={`http://localhost:3001` + p.imageUrl} alt="" />
+          src={`https://asturiasrestorant.herokuapp.com` + p.imageUrl} alt="" />
         <div className="overlay col p-0 text-white text-center">
           <h3 className="mb-0">{p.title}</h3>
           <hr className="bg-white" />
@@ -91,7 +91,7 @@ const HomePages = () => {
         </div>
       </Link>
     </article>
-  );
+);
 
   return (
     <div className="mw-100">

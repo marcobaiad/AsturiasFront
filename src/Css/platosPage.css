@@ -1,0 +1,12 @@
+@media only screen and (max-width: 600px) {
+  .ArticlePlate {
+    margin-top: 100px !important;
+  }
+}
+
+
+.platoIMG {
+  width: 300px !important;
+  height: 300px !important;
+  object-fit: fill;
+}

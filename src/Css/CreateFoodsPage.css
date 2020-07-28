@@ -1,0 +1,44 @@
+.previewImagen{
+    width: 300px;
+    height: 200px;
+}
+.border{
+    width: 300px;
+    height: 200px;
+}
+.borderInputImg{
+    outline: none;
+}
+.DivFormulario{
+    margin-top: 33px;
+}
+@media (max-width: 600px) {
+    .PrimeraCol {
+     order: 1;
+    }
+    .border{
+        width: 150px;
+        height: 100px;
+    }
+    .previewImagen{
+        width: 100%;
+        height: 100px;
+    }
+    .divPreviwImg{
+        margin: auto;
+    }
+    .Columnas{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }  
+    
+    .PrimerRow{
+        padding-top: 50px;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+  }
+  .FormGroup{
+      display: initial;
+  }
+

@@ -1,0 +1,130 @@
+*{
+    font-family: 'Oswald', sans-serif;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #990000;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: 1s ease;
+    transition: 1s ease;
+}
+
+.containers {
+    overflow: hidden;
+}
+
+.containers:hover .overlay {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+.PlatosHomeimg {
+    object-fit: fill;
+    width: 100px;
+    height: 200px;
+}
+
+.PlatosHomeimg:hover {
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+
+.btn-foods {
+    width: 28%;
+    font-size: .9rem;
+    padding: 0%;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .btn-foods {
+        width: 25%;
+        font-size: .7rem;
+    }
+}
+
+.btn-foods:hover {
+    background-color: #990000;
+    color: white;
+}
+
+.btnfood-selected {
+    background: #7b133c !important;
+}
+
+.text {
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.box-menu {
+    z-index: 1100;
+}
+
+.Titulo-Presentacion {
+    height: 50vh;
+    background-color: #111;
+
+}
+
+.redcolor {
+    color: red;
+}
+
+.tituloh1 {
+    font-size: 8rem;
+    line-height: .75;
+    letter-spacing: -12px;
+}
+
+@media only screen and (max-width: 600px) {
+    .tituloh1 {
+        font-size: 5rem;
+        line-height: .75;
+        letter-spacing: -6px;
+    }    
+}
+
+.parallaxHOME {
+    min-height: 450px;
+    max-height: 450px; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    border-top: 10px solid rgba(0,0,0,0.3);
+    border-bottom: 10px solid rgba(0,0,0,0.3);
+}
+
+.firstpara {
+    background-image: url("https://www.jbgood.com/wp/wp-content/uploads/2013/07/Crowd-21.jpg");
+}
+
+.secondpara {
+    background-image: url("https://www.jbgood.com/wp/wp-content/uploads/2013/07/The-musical-experience.jpg");
+}
+
+.font-parallax {
+    max-width: 100%;
+    font-size: 3.1rem;
+    color: white;
+}

@@ -1,0 +1,43 @@
+.carrousel-img {
+    max-height: 100vh;
+    height: 100vh;
+    object-fit: cover;
+}
+
+#navbar {
+    z-index: 1040;
+    max-width: 100%;
+}
+
+#navbar a{
+    text-decoration: none;
+}
+
+.navbar-menu {
+    background: rgba(0,0,0,0.7);
+    border-bottom: 1px solid #333;
+    font-size: 1.1rem;
+}
+
+.hover-navbar:hover {
+    color: red !important;
+    font-weight: bold !important;
+}
+
+.drop-menu {
+    width: 100%;
+    float: none !important;
+    background: #333 !important;
+}
+
+.drop-menu a:focus {
+    background-color: #0056b3 !important;
+}
+
+.drop-menu a:active {
+    background-color: #0056b3 !important;
+}
+
+.dropdown-toggle::after { 
+    content: none !important; 
+} 

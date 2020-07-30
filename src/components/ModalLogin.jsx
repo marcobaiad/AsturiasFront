@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../Css/logUser.css';
-import Auth from '../utils/auth';
+import auth from '../utils/auth';
 import clienteAxios from '../config/axios';
 import Modal from 'react-bootstrap/Modal'
 
@@ -20,9 +20,7 @@ const ModalLogin = (props) => {
 
     clienteAxios.post('/api/v1/usuarios/login', { username, password })
       .then(response => {
-
-        console.log('role...', response.data.role)
-        Auth.logedIn(response.data.token, response.data.role, response.data.id);
+        auth.logedIn(response.data.token, response.data.role, response.data.id);
         Swal.fire({
           icon: "success",
           title: "Logueado correctamente",
@@ -58,11 +56,9 @@ const ModalLogin = (props) => {
       showConfirmButton: false,
       timer: 3000
     });
-
-    }  
-     
+    }     
   }
-console.log(email)
+
   return (
     <Modal
       {...props}

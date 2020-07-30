@@ -34,16 +34,15 @@ class RegUser extends React.Component {
     registro.push({ name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username, password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
     this.setState({ registro })
     e.preventDefault();
-    const ModalLog = document.getElementById('Log-Modal');
+    // const ModalLog = document.getElementById('Log-Modal');
     try {
       await clienteAxios.post(`/api/v1/usuarios`, { name: this.state.name, lastname: this.state.lastname, address: this.state.address, age: this.state.age, username: this.state.username , password: this.state.password, phonenumber: this.state.phonenumber, email: this.state.email });
       await swal.fire({
         icon: 'success',
         title: 'Registro correcto',
       });
-      window.location="/";
-      
-      ModalLog.click()
+      window.location="/";      
+      // ModalLog.click()
     } catch (err) {
       const { response } = err;
       const errores = response.data.mensaje;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom'
 
 import clienteAxios from '../config/axios';
 
@@ -7,7 +8,7 @@ const GetOderPages = () => {
   const [order, setOrder] = useState([]);
 
   const GetOrder = useCallback(async () => {
-    const res = await clienteAxios.get(`/api/v1/orden/`, order)
+    const res = await clienteAxios.get(`/api/v1/orden/`, order);
     setOrder(res.data)
   }, []);
 
@@ -16,17 +17,17 @@ const GetOderPages = () => {
   }, [])
 
   const EnProceso = async (id) => {
-    await clienteAxios.put(`/api/v1/orden/${id}/ep`)
+    await clienteAxios.put(`http://localhost:3001/api/v1/orden/${id}/ep`)
     GetOrder()
   }
 
   const Enviar = async (id) => {
-    await clienteAxios.put(`/api/v1/orden/${id}/enviar`)
+    await clienteAxios.put(`http://localhost:3001/api/v1/orden/${id}/enviar`)
     GetOrder()
   }
 
   const Cancelar = (id) => {
-    clienteAxios.put(`/api/v1/orden/${id}/cancelar`)
+    clienteAxios.put(`http://localhost:3001/api/v1/orden/${id}/cancelar`)
     GetOrder()
   }
 

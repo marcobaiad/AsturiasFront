@@ -48,15 +48,15 @@ const Header = () => {
 
     const LogUotHandler = async () => {
         try {
-					await clienteAxios.get(`/api/v1/usuarios/logout`);
-					SetIsLogedIn(true);
-					auth.logOut();
-					window.location = '/';
+            await clienteAxios.get(`/api/v1/usuarios/logout`);
+            SetIsLogedIn(true);
+            auth.logOut();
+            window.location = '/';
         } catch (e) {
-					const { response } = e;
-					if (response.data.error & response.data.error.includes('expired')) {
-							console.log('La sesión finalizó');
-					}
+            const { response } = e;
+            if (response.data.error & response.data.error.includes('expired')) {
+                    console.log('La sesión finalizó');
+            }
         }
     }
 

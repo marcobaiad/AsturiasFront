@@ -17,17 +17,17 @@ const GetOderPages = () => {
   }, [])
 
   const EnProceso = async (id) => {
-    await clienteAxios.put(`http://localhost:3001/api/v1/orden/${id}/ep`)
+    await clienteAxios.put(`https://asturiasrestorant.herokuapp.com/api/v1/orden/${id}/ep`)
     GetOrder()
   }
 
   const Enviar = async (id) => {
-    await clienteAxios.put(`http://localhost:3001/api/v1/orden/${id}/enviar`)
+    await clienteAxios.put(`https://asturiasrestorant.herokuapp.com/api/v1/orden/${id}/enviar`)
     GetOrder()
   }
 
   const Cancelar = (id) => {
-    clienteAxios.put(`http://localhost:3001/api/v1/orden/${id}/cancelar`)
+    clienteAxios.put(`https://asturiasrestorant.herokuapp.com/api/v1/orden/${id}/cancelar`)
     GetOrder()
   }
 

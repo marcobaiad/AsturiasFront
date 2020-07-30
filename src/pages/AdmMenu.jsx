@@ -28,7 +28,7 @@ const AdmMenu = () => {
 			<div key={a._id} className=" row my-5 card DivContainer">
 				<img
 					className="card-img-top imgAdmin"
-					src={`http://localhost:3001` + a.imageUrl}
+					src={`https://asturiasrestorant.herokuapp.com` + a.imageUrl}
 					alt="Card image cap"
 				/>
 				<div className="card-body">

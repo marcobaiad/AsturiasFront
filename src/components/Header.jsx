@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import '../Css/navbar.css';
 import '../Css/Logo.css'
@@ -7,7 +7,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
-import Sweet from 'sweetalert2';
 import Lampara from '../img/CarrouselNav/Lampara.jpg'
 import Pizzas from '../img/CarrouselNav/Pizzas.jpg'
 import Restorant from '../img/CarrouselNav/Restorant.jpg'
@@ -101,7 +100,7 @@ const Header = () => {
             {pathHome &&
             <>
                 <div className="col-12 row mx-0 pr-3 pr-md-5 justify-content-end">
-                    <img src={Logo} className='logo mt-5' />
+                    <img src={Logo} className='logo mt-5' alt="Logo Asturias" />
                 </div>
                 <Carousel controls={false} indicators={false} id="carrousel">
                     <Carousel.Item>

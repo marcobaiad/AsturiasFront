@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import '../Css/navbar.css';
 import '../Css/Logo.css'
@@ -17,15 +17,30 @@ import SobreNosotros from './SobreNosotros'
 
 
 const Header = () => {
-
-    
+ 
 
     const [isLogedIn, SetIsLogedIn] = useState(false);
+    const [userName, SetUserName] = useState('');
     const history = useHistory();
     const pathHome = history.location.pathname === '/';
-		const [modalShow, setModalShow] = useState(false);
-		const [sobreShow, setSobreShow] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [sobreShow, setSobreShow] = useState(false);
 
+
+    const UserLogueado = async () => {
+        try {
+            if (auth.isAuthenticated) {
+              const usuario = await clienteAxios.get(`/api/v1/usuarios/${localStorage.getItem('id')}`);
+              const username = localStorage.setItem('username', usuario.data.username);
+              SetUserName(username)
+            };
+        } catch (error) {
+            const { response } = error;
+            console.log(response);
+        }
+    }
+    
+    
     const StickyNav = () => {
         const navbar = document.getElementById("navbar");
         const carrousel = document.getElementById("carrousel");
@@ -42,19 +57,23 @@ const Header = () => {
         }
     }
 
-    window.onscroll = StickyNav
+    useEffect(()=> {
+        UserLogueado();
+        StickyNav();
+    })
 
+    window.onscroll = StickyNav
 
     const LogUotHandler = async () => {
         try {
             await clienteAxios.get(`/api/v1/usuarios/logout`);
             SetIsLogedIn(true);
             auth.logOut();
-            window.location = '/';
+            history.push('/');
         } catch (e) {
             const { response } = e;
             if (response.data.error & response.data.error.includes('expired')) {
-                    console.log('La sesión finalizó');
+                console.log('La sesión finalizó');
             }
         }
     }
@@ -72,11 +91,11 @@ const Header = () => {
         setTimeout(MoverMenuComida, 100);
     }
 
-		const ModalSobre = () => setSobreShow(true);
+    const ModalSobre = () => setSobreShow(true);
 
     const onchangeSelectHandler = (e) => {
-			if (!pathHome && e.target.value === '/') {
-				window.location.href=e.target.value
+			if (e.target.value === '/') {
+                history.push(`${e.target.value}`) 
 			}
 			if (e.target.value === '#SobreNosotros') {
 				ModalSobre();
@@ -136,16 +155,22 @@ const Header = () => {
                         <Nav.Link className="text-white hover-navbar" href="/">INICIO</Nav.Link>
                         <Link className="text-white hover-navbar mt-2 mx-1" to="/" onClick={Timeout}>MENU</Link>
                         <Link className="text-white hover-navbar mt-2 mx-1" onClick={MoverContacto}>CONTACTO</Link>
-                        <Link className="text-white hover-navbar mt-2 mx-1"	to="#AboutUs" onClick={() => setSobreShow(true)} >
-													SOBRE NOSOTROS
-            	 					</Link>
-												<SobreNosotros show={sobreShow} onHide={() => setSobreShow(false)} />
+                        <Link className="text-white hover-navbar mt-2 mx-1"	to="#AboutUs" onClick={() => setSobreShow(true)}>SOBRE NOSOTROS</Link>
+						<SobreNosotros show={sobreShow} onHide={() => setSobreShow(false)} />
                     </Nav>
-                    <Nav className="row mx-3 order-1 order-md-2">
+                    <Nav className="row mx-2 order-1 order-md-2 flex-nowrap">
                         {auth.isAuthenticated() ?
-                            <>
-                            <Link className="text-white hover-navbar mt-2" to='/user/orders'> MIS PEDIDOS</Link>                            
-                            <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}><i className="far fa-user"></i> CERRAR SESIÓN</Nav.Link>
+                            <>   
+                                <Link class="mt-2 text-white hover-navbar dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-user-circle"></i> {userName ? userName : localStorage.getItem('username')}
+                                </Link>
+                                <div className="dropdown">
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <Link class="dropdown-item text-white hover-navbar" to="/user/orders"><i class="far fa-clipboard"></i> Mis Pedidos</Link>
+                                        <Link class="dropdown-item text-white hover-navbar" to=""><i className="far fa-user"></i> Mis datos</Link>
+                                    </div>
+                                </div>
+                                <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}> <i class="fas fa-sign-out-alt"></i> SALIR</Nav.Link>
                             </>
                             :
                             <>

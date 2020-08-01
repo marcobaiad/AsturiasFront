@@ -11,6 +11,7 @@ export default {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
         localStorage.removeItem('id');
+        localStorage.removeItem('username');
     },
 
     hasRole: role => {
@@ -19,7 +20,6 @@ export default {
     hasID: id => {
         return localStorage.getItem('id') === id
     },
-
 
 
 }

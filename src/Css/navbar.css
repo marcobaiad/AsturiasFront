@@ -38,6 +38,35 @@
     background-color: #0056b3 !important;
 }
 
-.dropdown-toggle::after { 
+/* .dropdown-toggle::after { 
     content: none !important; 
-} 
+}  */
+
+.dropdown {
+    position: absolute;
+    margin-top: 49px;
+}
+
+.dropdown-menu, .dropdown-menu a:hover, .dropdown-menu a:focus {
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+}
+
+.hover-navbar:hover .dropdown-menu {
+    display: block;
+}
+
+@media only screen and (max-width: 600px) {
+    .dropdown {
+        width: 100%;
+        left: 0;
+    }
+    .dropdown-menu {
+      width: 100%;
+    }
+}
+
+.fa-user-circle {
+    height: 0;
+    font-size: 23px;
+}

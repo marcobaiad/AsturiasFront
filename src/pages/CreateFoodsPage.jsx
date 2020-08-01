@@ -28,7 +28,7 @@ function CreateFoodsPage() {
 					}
 				})
 			}
-			window.location = '/';
+			history.push('/');
 		} catch (error) {
 			console.log(error)
 		}

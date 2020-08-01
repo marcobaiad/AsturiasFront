@@ -13,7 +13,6 @@ const ModalLogin = (props) => {
   const [email, setEmail] = useState('')
 
   const history = useHistory();
-  
 
   const logUser = e => {
     e.preventDefault();
@@ -29,9 +28,9 @@ const ModalLogin = (props) => {
         });
 
         response.data.role === 'admin' ?
-          history.push('/admin/todas')
-          : history.push('/');
-
+        history.push('/admin/todas')
+        :
+        history.push('/')
       }).catch(function () {
         Swal.fire({
           icon: "error",

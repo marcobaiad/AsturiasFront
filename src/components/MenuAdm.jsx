@@ -22,7 +22,7 @@ const MenuAdm = () => {
 		try {
 			await clienteAxios.get(`/api/v1/usuarios/logout`);
 			Auth.logOut();
-			window.location="/"
+			history.push('/');
 		} catch (e) {
 			const { response } = e;
 			console.log(response);		

@@ -23,7 +23,7 @@ const PlatosPage = () => {
                     title: 'Tu sesión expiró',
                     text: 'Por favor, debes ingresar nuevamente'
                 });
-                window.location = '/';
+                history.push('/');
                 const ModalLog = document.getElementById('Log-Modal');
                 ModalLog.click();
             } else {

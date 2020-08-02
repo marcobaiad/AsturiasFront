@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useCallback } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../Css/logUser.css';
 import auth from '../utils/auth';
 import clienteAxios from '../config/axios';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
 
 
 const ModalLogin = (props) => {
@@ -13,6 +13,15 @@ const ModalLogin = (props) => {
   const [email, setEmail] = useState('')
 
   const history = useHistory();
+
+  const measuredRef = useCallback(node => {
+    if (node !== null) {      
+      setTimeout(() => {
+        node.focus();
+      }, 1)
+    }
+  }, []);
+
 
   const logUser = e => {
     e.preventDefault();
@@ -58,6 +67,7 @@ const ModalLogin = (props) => {
     }     
   }
 
+
   return (
     <Modal
       {...props}
@@ -75,6 +85,8 @@ const ModalLogin = (props) => {
                 className="form-control item"
                 placeholder="Usuario"
                 name="username"
+                ref={measuredRef}
+                autoFocus
                 minLength="4"
                 onChange={(e) => { setUser(e.target.value) }} />
             </div>
@@ -99,10 +111,10 @@ const ModalLogin = (props) => {
                 </div>
               </div>
               <div className="col-md-9">
-                <a type="" href="" className="olvideContrasenia" data-toggle="modal" data-target="#exampleModalCentered"
+                <Link to="" className="olvideContrasenia" data-toggle="modal" data-target="#exampleModalCentered"
                 >
                   Olvidé mi Contraseña
-              </a>     
+              </Link>     
               </div>
             </div>
             <button

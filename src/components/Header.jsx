@@ -13,7 +13,7 @@ import Restorant from '../img/CarrouselNav/Restorant.jpg'
 import ModalLogin from './ModalLogin';
 import clienteAxios from '../config/axios';
 import Logo from '../img/CarrouselNav/Logo.png';
-import SobreNosotros from './SobreNosotros'
+import SobreNosotros from './SobreNosotros';
 
 
 const Header = () => {
@@ -56,7 +56,7 @@ const Header = () => {
             }
         }
     }
-
+      
     useEffect(()=> {
         UserLogueado();
         StickyNav();
@@ -112,8 +112,8 @@ const Header = () => {
 			}
     }
 
-    const roleAdmin = localStorage.getItem('role')
-
+    const roleAdmin = localStorage.getItem('role');
+    
     return (
         <div className="d-flex flex-wrap">
             {pathHome &&
@@ -154,7 +154,7 @@ const Header = () => {
                         <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
                         <Nav.Link className="text-white hover-navbar" href="/">INICIO</Nav.Link>
                         <Link className="text-white hover-navbar mt-2 mx-1" to="/" onClick={Timeout}>MENU</Link>
-                        <Link className="text-white hover-navbar mt-2 mx-1" onClick={MoverContacto}>CONTACTO</Link>
+                        <Link className="text-white hover-navbar mt-2 mx-1" to="" onClick={MoverContacto}>CONTACTO</Link>
                         <Link className="text-white hover-navbar mt-2 mx-1"	to="#AboutUs" onClick={() => setSobreShow(true)}>SOBRE NOSOTROS</Link>
 						<SobreNosotros show={sobreShow} onHide={() => setSobreShow(false)} />
                     </Nav>
@@ -175,7 +175,7 @@ const Header = () => {
                             :
                             <>
                                 <Link className="text-white hover-navbar mx-2" to="/reg">REGISTRO</Link>
-                                <Link className="text-white hover-navbar mx-2" onClick={() => setModalShow(true)} id="Log-Modal"><i className="far fa-user"></i> INICIAR SESIÓN</Link>
+                                <Link className="text-white hover-navbar mx-2" to="" onClick={() => setModalShow(true)} id="Log-Modal"><i className="far fa-user"></i> INICIAR SESIÓN</Link>
                                 <ModalLogin
                                     className="position-absolute"
                                     show={modalShow}
@@ -187,7 +187,7 @@ const Header = () => {
                     <Form className="w-100 px-3 d-md-none mt-3 mb-0">
                         <Form.Group controlId="exampleForm.SelectCustom">
                             <Form.Control onChange={onchangeSelectHandler} className="drop-menu text-white" as="select" custom>
-                                <option value="" disabled selected>IR A...</option>
+                                <option defaultValue disabled selected>IR A...</option>
                                 <option value="/">INICIO</option>
                                 <option value="#Menu">MENU</option>
                                 <option value="#AboutUs">CONTACTO</option>

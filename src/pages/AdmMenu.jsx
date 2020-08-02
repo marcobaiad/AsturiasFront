@@ -29,7 +29,7 @@ const AdmMenu = () => {
 				<img
 					className="card-img-top imgAdmin"
 					src={`https://asturiasrestorant.herokuapp.com` + a.imageUrl}
-					alt="Card image cap"
+					alt="Card cap"
 				/>
 				<div className="card-body">
 					<h4 className="card-title"> {a.title} </h4>

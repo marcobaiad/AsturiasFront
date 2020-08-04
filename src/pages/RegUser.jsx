@@ -77,10 +77,10 @@ class RegUser extends React.Component {
           <h1 className='titulo text-white pb-5'>Registro de Usuario</h1>
           <div className="form-row">
             <div className="form-group col-md-6 mb-0">
-              <input autoFocus type="text" className="form-control item" name="name" onChange={this.handleChange} required placeholder="Nombre" />
+              <input autoFocus type="text" maxLength="25" className="form-control item" name="name" onChange={this.handleChange} required placeholder="Nombre" />
             </div>
             <div className="form-group col-md-6 mb-0">
-              <input type="text" className="form-control item" name="lastname" onChange={this.handleChange} required placeholder="Apellido" />
+              <input type="text" className="form-control item" maxLength="25" name="lastname" onChange={this.handleChange} required placeholder="Apellido" />
             </div>
             <div className="form-group col-md-6 mb-0">
               <input type="text" minLength="9" maxLength="11" className="form-control item" onKeyPress={this.OnlyNumber} name="phonenumber" onChange={this.handleChange} required title="3810000000" placeholder="N° Celular" />

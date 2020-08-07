@@ -152,7 +152,7 @@ const Header = () => {
                 <Navbar variant="dark" className="px-0 py-2 mb-3 mb-lg-4 navbar-menu row flex-wrap justify-content-center justify-content-md-between m-0">
                     <Nav className="d-none d-sm-none d-md-flex d-lg-flex row pl-5 order-2 order-md-1">
                         <Navbar.Brand className="d-none d-lg-block ml-3">Asturias Food & Drinks</Navbar.Brand>
-                        <Nav.Link className="text-white hover-navbar" href="/">INICIO</Nav.Link>
+                        <Link className="text-white hover-navbar mt-2 mx-1" to="/">INICIO</Link>
                         <Link className="text-white hover-navbar mt-2 mx-1" to="/" onClick={Timeout}>MENU</Link>
                         <Link className="text-white hover-navbar mt-2 mx-1" to="" onClick={MoverContacto}>CONTACTO</Link>
                         <Link className="text-white hover-navbar mt-2 mx-1"	to="#AboutUs" onClick={() => setSobreShow(true)}>SOBRE NOSOTROS</Link>

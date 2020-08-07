@@ -100,7 +100,7 @@ class RegUser extends React.Component {
               <input type="text" minLength="4" className="form-control item" name="username" onChange={this.handleChange} title="El usuario debe contener al menos 4 caracteres" required placeholder="Usuario" />
             </div>
             <div className="form-group col-md-6 mb-0">
-              <input type="password" minLength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control item" name="password" onChange={this.handleChange} title="La contraseña debe tener al menos 8 caracteres y una mayuscula" required placeholder="Contraseña" />
+              <input type="password" minLength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control item" name="password" onChange={this.handleChange} title="La contraseña debe tener al menos 8 caracteres, una mayuscula y una minuscula" required placeholder="Contraseña" />
             </div>
           </div>
           <button type="submit" className="btn btn-block create-account">Registrarse</button>

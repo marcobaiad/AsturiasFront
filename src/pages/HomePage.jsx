@@ -81,7 +81,7 @@ const HomePages = () => {
     <article key={p._id} className="col-6 col-md-4 col-lg-3 px-0 containers">
       <Link onClick={Logueado} to={'plato/' + p._id}>
         <img className="w-100 PlatosHomeimg"
-          src={p.imageUrl} alt={p.title} />
+          src={p.imageUrl.includes('cloudinary') ? p.imageUrl : `http://asturiasrestorant.herokuapp.com` + p.imageUrl} alt={p.title} />
         <div className="overlay col p-0 text-white text-center">
           <h4 className="mb-0">{p.title}</h4>
           <hr className="bg-white my-1" />

@@ -28,7 +28,7 @@ const AdmMenu = () => {
 			<div key={a._id} className=" row my-5 card DivContainer">
 				<img
 					className="card-img-top imgAdmin"
-					src={`https://asturiasrestorant.herokuapp.com` + a.imageUrl}
+					src={a.imageUrl.includes('cloudinary') ? a.imageUrl : `http://asturiasrestorant.herokuapp.com` + a.imageUrl}
 					alt="Card cap"
 				/>
 				<div className="card-body">

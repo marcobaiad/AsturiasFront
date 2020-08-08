@@ -23,8 +23,11 @@ const Editfoods = () => {
   const getFood = useCallback(async () => {
     const res = await clienteAxios.get(`api/v1/comidas/${params.id}`)
     setCreateFoods(res.data)
-    setPreviewImage(res.data.imageUrl)
-    setImage(res.data.imageUrl)
+    res.data.imageUrl.includes('cloudinary') 
+    ? 
+    setPreviewImage(res.data.imageUrl) && setImage(res.data.imageUrl)
+    : 
+    setPreviewImage(`http://asturiasrestorant.herokuapp.com` + res.data.imageUrl) && setImage(`http://asturiasrestorant.herokuapp.com` + res.data.imageUrl);
   }, [params.id])
 
   useEffect(() => {

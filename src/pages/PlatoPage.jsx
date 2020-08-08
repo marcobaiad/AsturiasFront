@@ -10,6 +10,7 @@ const PlatosPage = () => {
     const params = useParams();
     const history = useHistory();
     const [platoID, setPlatoID] = useState([]);
+    const [urlImg,  setUrlImg] = useState('')
     const [usuarioID, setUsuarioID] = useState([]);
     const UserID = localStorage.getItem('id');
 
@@ -18,6 +19,7 @@ const PlatosPage = () => {
         (async () => {
             const responsePlatos = await Clienteaxios.get(`/api/v1/comidas/${params.id}`);
             setPlatoID(responsePlatos.data);
+            setUrlImg(responsePlatos.data.imageUrl);
             if (UserID === null) {
                 Sweet.fire({
                     title: 'Tu sesión expiró',
@@ -39,7 +41,7 @@ const PlatosPage = () => {
             <h3 className="mt-5">{platoID.title}</h3>
             <hr className="bg-white" />
             <div className="row justify-content-center">
-                <img className="platoIMG col-12 col-md-6 px-2 px-md-0" src={`https://asturiasrestorant.herokuapp.com` + platoID.imageUrl} alt={platoID.title} />
+                <img className="platoIMG col-12 col-md-6 px-2 px-md-0" src={urlImg.includes('cloudinary') ? urlImg : `http://asturiasrestorant.herokuapp.com` + platoID.imageUrl} alt={platoID.title} />
                 <div className="col-12 col-md-6 px-2">
                     <p>{platoID.description}</p>
                     <p>{platoID.summary}</p>

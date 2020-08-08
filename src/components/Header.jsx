@@ -167,7 +167,7 @@ const Header = () => {
                                 <div className="dropdown">
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link class="dropdown-item text-white hover-navbar" to="/user/orders"><i class="far fa-clipboard"></i> Mis Pedidos</Link>
-                                        <Link class="dropdown-item text-white hover-navbar" to=""><i className="far fa-user"></i> Mis datos</Link>
+                                        <Link class="dropdown-item text-white hover-navbar" to="/user/perfil"><i className="far fa-user"></i> Mis datos</Link>
                                     </div>
                                 </div>
                                 <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}> <i class="fas fa-sign-out-alt"></i> SALIR</Nav.Link>

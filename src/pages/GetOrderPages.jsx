@@ -10,6 +10,7 @@ const GetOderPages = () => {
   const [enProceso, setEnProceso] = useState([]);
   const [enviados, setEnviados] = useState([]);
   const [cancelados, setCancelados] = useState([]);
+  const [finalizadas, setFinalizadas] = useState([]);
 
 
   const GetOrder = useCallback(async () => {
@@ -21,7 +22,7 @@ const GetOderPages = () => {
     let EnProceso = res.data.filter(EnProceso => EnProceso.state === "En Proceso");
     let Cancelado = res.data.filter(Cancelados => Cancelados.state === "Cancelado");
     let Enviado = res.data.filter(Enviados => Enviados.state === "Enviado");
-
+    let Finalizado = res.data.filter(Finalizados => Finalizados.state === "Finalizado");
     
     if (Pendiente) {
       setPendientes(Pendiente)
@@ -34,6 +35,9 @@ const GetOderPages = () => {
     }
     if (Enviado) {
       setEnviados(Enviado)
+    }
+    if (Finalizado) {
+      setFinalizadas(Finalizado)
     }
   }, []);
 
@@ -76,6 +80,10 @@ const GetOderPages = () => {
     setOrderFilter(cancelados)
   }
 
+  const HandlerClicFinalizadas = () => {
+    setOrderFilter(finalizadas)
+  }
+
   const cards = orderFilter.map(a =>
     <div className="col col-12 col-md-4">
       <div key={a._id} className="my-2 card">
@@ -106,12 +114,13 @@ const GetOderPages = () => {
 
  return (
     <div className="container">
-      <div class="btn-group w-100" role="group" aria-label="Basic example">
+      <div class="btn-group w-100 row mx-0" role="group" aria-label="Grupo de Botones">
         <button type="button" class="btn btn-secondary" onClick={HandlerClicTodas}>Todas</button>
         <button type="button" class="btn btn-secondary" onClick={HandlerClicPendientes}>Pendientes</button>
         <button type="button" class="btn btn-secondary" onClick={HandlerClicEnProceso}>En Proceso</button>
         <button type="button" class="btn btn-secondary" onClick={HandlerClicCanceladas}>Canceladas</button>
         <button type="button" class="btn btn-secondary" onClick={HandlerClicEnviadas}>Enviadas</button>
+        <button type="button" class="btn btn-secondary" onClick={HandlerClicFinalizadas}>Finalizadas</button>
     </div>
       <div className="row pt-5 overflow-auto" style={{height: "72vh"}}>
         {cards}

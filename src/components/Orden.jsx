@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Sweet from 'sweetalert2';
-import ClienteAxios from '../config/axios';
+import clienteAxios from '../config/axios';
 
 const Orden = (props) => {
   
@@ -8,13 +8,15 @@ const Orden = (props) => {
   const [amount, setAmount] = useState('');
   const direccionDefault = props.user.address;
   const [direccionActual, setDireccionActual] = useState(0);
-  let valor = parseInt(cantidades*props.platoID.price);     
-  
-  
+  let valor = parseInt(cantidades*props.platoID.price);    
+  const cerrarModal = useRef();
+
   const onChangeCantidadHandler = (e) => {
-    let cantidad = e.target.value;
+    let cantidad = e.target.value
+    cantidad = parseInt(cantidad)
     setCantidades(cantidad);
-  } 
+    console.log('cantidad ->', typeof cantidad)
+  }
   
   const DireccionHandler = (e) => {
     let direccion = e.target.value;
@@ -37,17 +39,34 @@ const Orden = (props) => {
         });  
         return
       }
-      await ClienteAxios.post(`/api/v1/orden`, { food: props.platoID._id, quantity: cantidades, address: direccionActual !== 0 ? direccionActual : direccionDefault, amountTopay: valor, user: props.user._id, state: 'Pendiente' });
+      await clienteAxios.post(`/api/v1/orden`, { food: props.platoID._id, quantity: cantidades, address: direccionActual !== 0 ? direccionActual : direccionDefault, amountTopay: valor, user: props.user._id, state: 'Pendiente' });
       await Sweet.fire({
         icon: 'success',
         title: 'Tu pedido está en proceso',
         text: `Tu vuelto es de $${ amount - valor }`,        
       });
-      const cerrarModal = document.getElementById('Cerrar-Modal');
-      cerrarModal.click();
+      cerrarModal.current.click();
     } catch (err) {
       const { response } = err;
       const errores = response.data.mensaje;
+    }
+  }
+
+  const MerPagTcHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await clienteAxios.post(`/api/v1/orden/tarjeta`, {
+        food: props.platoID._id,
+        quantity: cantidades,
+        address: direccionActual !== 0 ? direccionActual : direccionDefault,
+        user: props.user._id,
+        state: 'Pendiente de Pago'
+      });
+      console.log('res->',res.data)
+      window.location.href = res.data.reference_data.sandbox_init_point
+      cerrarModal.current.click();
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -58,7 +77,7 @@ const Orden = (props) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLongTitle"> Elegiste: { props.platoID.title }</h5>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" className="close" data-dismiss="modal" ref={cerrarModal} aria-label="Close">
               <span aria-hidden="true text-dark">&times;</span>
             </button>
           </div>
@@ -81,9 +100,9 @@ const Orden = (props) => {
           <div className="mt-2 px-3 text-left">
             <p className="my-1 font-weight-bold">Total a pagar: ${ valor } </p>
           </div>
-          <div>
+          <div className="mx-auto mt-3 m-md-0">
+            <button type="button" className="btn btn-outline-primary mx-1" onClick={MerPagTcHandler}>Pago Con Tarjeta</button>
             <button type="button" className="btn btn-danger mx-1" onClick={sumbitHandler}>Confirmar</button>
-            <button type="button" className="btn btn-secondary mx-1" id="Cerrar-Modal" data-dismiss="modal">Cerrar</button>
           </div>
           </div>
         </div>

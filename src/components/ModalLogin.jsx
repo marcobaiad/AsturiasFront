@@ -12,6 +12,8 @@ const ModalLogin = (props) => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('')
 
+  const rolelocal = localStorage.getItem('role')
+
   const history = useHistory();
 
   const measuredRef = useCallback(node => {
@@ -35,8 +37,7 @@ const ModalLogin = (props) => {
           showConfirmButton: false,
           timer: 1000
         });
-
-        response.data.role === 'admin' ?
+        rolelocal === 'admin' ?
         history.push('/admin/todas')
         :
         history.push('/')

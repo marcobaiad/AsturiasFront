@@ -7,6 +7,8 @@
 #navbar {
     z-index: 1040;
     max-width: 100%;
+    min-width: 100%;
+    position: absolute;
 }
 
 #navbar a{

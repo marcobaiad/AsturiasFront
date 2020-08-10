@@ -8,5 +8,5 @@
 .platoIMG {
   width: 300px !important;
   height: 300px !important;
-  object-fit: fill;
+  object-fit: cover;
 }

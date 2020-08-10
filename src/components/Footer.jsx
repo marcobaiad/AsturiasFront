@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Iframe from 'react-iframe';
 import '../Css/footer.css';
 
 const Footer = () => {
 
-	const roleAdmin = localStorage.getItem('role')
+	const roleAdmin = localStorage.getItem('role');
+
+	const FooterReferencia = useRef();
+
 
 	return (
 		<>
 			{roleAdmin === 'admin' ?
 				'' :
-				<footer className="row justify-content-around  align-items-center mx-0 py-3 bg-dark text-white" id="AboutUs">
-					<div className="">
+				<footer className="row justify-content-around  align-items-center mx-0 py-3 bg-dark text-white" ref={FooterReferencia} id="AboutUs">
+					<div>
 						<h2 className="text-white h2-footer text-center">Asturias Food & Drink</h2>
 						<div className="row mx-0 justify-content-center text-center text-md-left">
 							<div id="Redes" className="my-4 col-12 col-md-6">

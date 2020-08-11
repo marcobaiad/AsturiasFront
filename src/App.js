@@ -17,6 +17,7 @@ import PlatoPage from './pages/PlatoPage';
 import GetOrderUserPages from './pages/GetOrderUserPages';
 import MenuAdm from './components/MenuAdm';
 import UserProfilePage from './pages/UserProfilePage';
+import RecoverPass from './pages/RecoverPass'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
 				<PrivateRoute path="/user/perfil" role={'user'} component={UserProfilePage} />
 				<Route path="/plato/:id" exact role={'user'} component={PlatoPage} />
 				<Route path="/reg" exact component={RegUser} />
+				<Route path="/recoverpass/:tokenId" component={RecoverPass} />
 				<Route exact path="/" component={HomePage} />
 			</Switch>
 			<Route component={Footer} />

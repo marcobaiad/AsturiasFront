@@ -5,10 +5,11 @@ import '../Css/footer.css';
 const Footer = () => {
 
 	const roleAdmin = localStorage.getItem('role')
+	const recoverPass = window.location.pathname === "/recoverpass"
 
 	return (
 		<>
-			{roleAdmin === 'admin' ?
+			{roleAdmin === 'admin' || recoverPass ?
 				'' :
 				<footer className="row justify-content-around  align-items-center mx-0 py-3 bg-dark text-white" id="AboutUs">
 					<div className="">

@@ -40,9 +40,8 @@ const Editfoods = () => {
 
   const selectHandlerChange = (e) => {
     const value = e.target.value === 'true';
-    const isEnable = enable === 'true'
-
-    isEnable ? Swal.fire({
+    
+    enable ? Swal.fire({
       title: 'Esta Seguro de Deshabilitar esta Comida del Menu?',
       text: "Deshabiltiar!",
       icon: 'warning',
@@ -92,8 +91,12 @@ const Editfoods = () => {
     try {
       await clienteAxios.put(`api/v1/comidas/${params.id}`, {
         title, description, summary, price, category, enable
-      }
-      )
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Cambios Guardados'
+      })
+      history.goBack();
       if (previewImage !== image) {
 
         const formData = new FormData()
@@ -104,8 +107,6 @@ const Editfoods = () => {
           }
         })
       }
-
-      history.goBack();
     }
     catch {
       console.log('NO SE PUDO ACTUALIZAR');

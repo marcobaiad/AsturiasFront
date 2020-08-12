@@ -43,6 +43,8 @@ const RecoverPass = (props) => {
               type="password"
               id="inputPassword6"
               name="newPass"
+              required
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               placeholder="Contraseña nueva"
               onChange={(e) => { setNewPassword(e.target.value) }}
               autofocus
@@ -53,6 +55,8 @@ const RecoverPass = (props) => {
               className="form-control"
               name="newPasswordRetype"
               placeholder="Repetir contraseña"
+              required
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               type="password"
               onChange={(e) => { setNewPasswordRetype(e.target.value) }}
               autofocus

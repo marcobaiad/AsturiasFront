@@ -17,7 +17,7 @@ const ModalLogin = (props) => {
   const history = useHistory();
 
   const measuredRef = useCallback(node => {
-    if (node !== null) {      
+    if (node !== null) {
       setTimeout(() => {
         node.focus();
       }, 1)
@@ -37,10 +37,11 @@ const ModalLogin = (props) => {
           showConfirmButton: false,
           timer: 1000
         });
-        rolelocal === 'admin' ?
-        history.push('/admin/todas')
-        :
-        history.push('/')
+
+        response.data.role === 'admin' ?
+          history.push('/admin/todas')
+          :
+          history.push('/')
       }).catch(function () {
         Swal.fire({
           icon: "error",
@@ -51,21 +52,24 @@ const ModalLogin = (props) => {
       })
   }
 
-  const recoverPass = (e) => {    
-    if(email === '' ) {       
+  const recoverPass = (e) => {
+
+    clienteAxios.post('/api/v1/usuarios/sendrecoverypass', { email })
+
+    if (email === '') {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Ingresar Email'  
+        text: 'Ingresar Email'
       })
-    }else{      
-     Swal.fire({
-      icon: "success",
-      title: "Mensaje enviado",
-      showConfirmButton: false,
-      timer: 3000
-    });
-    }     
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Mensaje enviado",
+        showConfirmButton: false,
+        timer: 3000
+      });
+    }
   }
 
 
@@ -115,7 +119,7 @@ const ModalLogin = (props) => {
                 <Link to="" className="olvideContrasenia" data-toggle="modal" data-target="#exampleModalCentered"
                 >
                   Olvidé mi Contraseña
-              </Link>     
+              </Link>
               </div>
             </div>
             <button
@@ -125,40 +129,40 @@ const ModalLogin = (props) => {
           </form>
         </div>
         <div className="modal"
-                  id="exampleModalCentered" tabIndex="-1"
-                  role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
-                  <div className="modal-dialog modal-dialog-centered" role="document">
-                    <div className="modal-content modalrecover">
-                      <div className="modal-header d-block">
-                        <h5 className="text-center" id="exampleModalCenteredLabel">Recuperar contraseña</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">×</span>
-                        </button>
-                      </div>
-                      <div className="modal-body">
-                        <div className="form-group">
-                          <div className="col-md-12 text-center">
-                        
-                            <label htmlFor="formGroupExampleInput">Ingresa tu email para recuperar tu contraseña</label>
-                            <input
-                              type="email"
-                              className="form-control item"
-                              id="inputEmail3"
-                              placeholder="Email"
-                              required
-                              name="recuperarEmail"
-                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                              onChange={(e) => { setEmail(e.target.value) }}
-                               />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="modal-footer">
-                        <button type="button" className="btn btn-block modalBtn" onClick={recoverPass}>Recuperar</button>
-                      </div>
-                    </div>
+          id="exampleModalCentered" tabIndex="-1"
+          role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content modalrecover">
+              <div className="modal-header d-block">
+                <h5 className="text-center" id="exampleModalCenteredLabel">Recuperar contraseña</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="form-group">
+                  <div className="col-md-12 text-center">
+
+                    <label htmlFor="formGroupExampleInput">Ingresa tu email con el que te registraste para recuperar tu contraseña</label>
+                    <input
+                      type="email"
+                      className="form-control item"
+                      id="inputEmail3"
+                      placeholder="Email"
+                      required
+                      name="recuperarEmail"
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                      onChange={(e) => { setEmail(e.target.value) }}
+                    />
                   </div>
                 </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-block modalBtn" onClick={recoverPass}>Recuperar</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     </Modal>
   );

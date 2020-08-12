@@ -4,16 +4,14 @@ import '../Css/footer.css';
 
 const Footer = () => {
 
-	const roleAdmin = localStorage.getItem('role');
-
-	const FooterReferencia = useRef();
-
+	const roleAdmin = localStorage.getItem('role')
+	const recoverPass = window.location.pathname === "/recoverpass"
 
 	return (
 		<>
-			{roleAdmin === 'admin' ?
+			{roleAdmin === 'admin' || recoverPass ?
 				'' :
-				<footer className="row justify-content-around  align-items-center mx-0 py-3 bg-dark text-white" ref={FooterReferencia} id="AboutUs">
+				<footer className="row justify-content-around  align-items-center mx-0 py-3 bg-dark text-white" id="AboutUs">
 					<div>
 						<h2 className="text-white h2-footer text-center">Asturias Food & Drink</h2>
 						<div className="row mx-0 justify-content-center text-center text-md-left">

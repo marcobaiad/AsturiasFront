@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Iframe from 'react-iframe';
 import '../Css/footer.css';
 
@@ -12,7 +12,7 @@ const Footer = () => {
 			{roleAdmin === 'admin' || recoverPass ?
 				'' :
 				<footer className="row justify-content-around  align-items-center mx-0 py-3 bg-dark text-white" id="AboutUs">
-					<div className="">
+					<div>
 						<h2 className="text-white h2-footer text-center">Asturias Food & Drink</h2>
 						<div className="row mx-0 justify-content-center text-center text-md-left">
 							<div id="Redes" className="my-4 col-12 col-md-6">

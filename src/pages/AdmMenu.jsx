@@ -10,15 +10,15 @@ const AdmMenu = () => {
 
 
 	useEffect(() => {
-		const consultApi = () => {
-			clienteAxios.get('api/v1/comidas/todas')
+		const consultApi = async () => {
+			await clienteAxios.get('api/v1/comidas/todas')
 
-				.then(response => {
-					setMenu(response.data)
-				})
-				.catch(error => {
-					console.log(error)
-				})
+			.then(response => {
+				setMenu(response.data)
+			})
+			.catch(error => {
+				console.log(error)
+			})
 		}
 		consultApi();
 	}, []);

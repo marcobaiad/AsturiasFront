@@ -12,6 +12,8 @@ const ModalLogin = (props) => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('')
 
+  const rolelocal = localStorage.getItem('role')
+
   const history = useHistory();
 
   const measuredRef = useCallback(node => {

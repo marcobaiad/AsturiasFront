@@ -8,7 +8,7 @@ const Editfoods = () => {
   const history = useHistory()
   const params = useParams()
   const wrapperRef = useRef(null)
-    const [createFoods, setCreateFoods] = useState({
+  const [createFoods, setCreateFoods] = useState({
     title: '',
     description: '',
     summary: '',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../Css/homepage.css'
 import { useHistory, Link } from 'react-router-dom';
+import '../Css/homepage.css'
 import auth from '../utils/auth';
 import clienteAxios from '../config/axios';
 import Sweet from 'sweetalert2';

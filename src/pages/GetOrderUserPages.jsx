@@ -25,7 +25,7 @@ const GetOrderUserPages = () => {
 
   useEffect(() => {
     GetOrder()
-  })
+  }, [])
 
   const onRatingChange = async(score, id) =>{
     setRating(score);
@@ -76,7 +76,7 @@ const GetOrderUserPages = () => {
 
   useEffect(() => {
     getStatusOfPayment()
-  })
+  }, [])
 
   const cards = order.map(a =>
     <div key={a._id} className="my-5 card">
@@ -122,10 +122,17 @@ const GetOrderUserPages = () => {
   return (
     
       
-    <div class="container mt-5 mt-md-0">
-      <div className="card-columns py-5 ">
-        {cards}
-      </div>
+    <div className="container mt-5 mt-md-0">
+      { order.length > 0 ?
+        <div className="card-columns py-5">
+          {cards}
+        </div>
+      :
+        <div className="py-5">
+          <h3 className="text-center mt-5 pt-5 pb-4">Todavía no realizaste ningún pedido</h3>
+          <p className="text-center d-block">Por favor, realiza un pedido para poder hacer el seguimiento del mismo</p>  
+        </div>
+      }
     </div>
 
   );

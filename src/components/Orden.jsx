@@ -86,11 +86,11 @@ const Orden = (props) => {
               <label>Unidades</label>
               <input type="number" min="1" className="my-1 form-control" name="quantity" placeholder="Cantidad" value={ cantidades } onChange={ onChangeCantidadHandler }/>
               <label>¿Con cuánto vas a abonar?</label>
-              <div class="input-group mb-1">
-                <div class="input-group-prepend">
-                  <span class="input-group-text my-1">$</span>
+              <div className="input-group mb-1">
+                <div className="input-group-prepend">
+                  <span className="input-group-text my-1">$</span>
                 </div>
-                <input type="text" class="my-1 form-control" onChange={amountTopayHandler} name="amountTopay" aria-label="Amount (to the nearest dollar)" />
+                <input type="text" className="my-1 form-control" onChange={amountTopayHandler} name="amountTopay" aria-label="Amount (to the nearest dollar)" />
               </div>
               <label>¿A dónde enviamos tu Pedido?</label>
               <input type="text" className="my-1 form-control" placeholder="Dirección" value={ direccionActual !== 0 ? direccionActual : direccionDefault } onChange={ DireccionHandler }/>

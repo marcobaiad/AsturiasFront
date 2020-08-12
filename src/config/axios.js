@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const clienteAxios = axios.create({
-  baseURL: 'https://asturiasrestorant.herokuapp.com'
+  baseURL: 'http://localhost:3000'
 });
 
 export default clienteAxios;

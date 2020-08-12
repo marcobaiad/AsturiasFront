@@ -31,11 +31,11 @@ const Header = () => {
 
     const UserLogueado = async () => {
         try {
-            if (auth.isAuthenticated) {
-              const usuario = await clienteAxios.get(`/api/v1/usuarios/${localStorage.getItem('id')}`);
-              const username = localStorage.setItem('username', usuario.data.username);
-              SetUserName(username)
-            };
+            if (localStorage.getItem('token')) {
+                const usuario = await clienteAxios.get(`/api/v1/usuarios/${localStorage.getItem('id')}`);
+                const username = localStorage.setItem('username', usuario.data.username);
+                SetUserName(username)
+            }
         } catch (error) {
             const { response } = error;
             console.log(response);
@@ -81,7 +81,9 @@ const Header = () => {
     }
       
     useEffect(()=> {
-        UserLogueado();
+        if (auth.isAuthenticated) {
+            UserLogueado();
+        };
         alturaNav();
     }, [alturaNav, UserLogueado])
 
@@ -115,23 +117,28 @@ const Header = () => {
 
     const ModalSobre = () => setSobreShow(true);
 
+    const formSelect = useRef();
+    
     const onchangeSelectHandler = (e) => {
-			if (e.target.value === '/') {
-                history.push(`${e.target.value}`) 
-			}
-			if (e.target.value === '#SobreNosotros') {
-				ModalSobre();
-			}
-			if (pathHome && e.target.value === '#Menu') {            
-				MoverMenuComida();
-			}
-			if (!pathHome && e.target.value === '#Menu') {
-				history.push(`/${e.target.value}`);            
-				Timeout();
-			}
-			if (e.target.value === '#AboutUs') {
-				MoverContacto();
-			}
+        if (e.target.value === '/') {
+            history.push(`${e.target.value}`) 
+        }
+        if (e.target.value === '#SobreNosotros') {
+            ModalSobre();
+        }
+        if (pathHome && e.target.value === '#Menu') {            
+            MoverMenuComida();
+        }
+        if (!pathHome && e.target.value === '#Menu') {
+            history.push(`/${e.target.value}`);            
+            Timeout();
+        }
+        if (e.target.value === '#AboutUs') {
+            MoverContacto();
+        }
+        const select = formSelect.current
+        setTimeout(() => select.selectedIndex = 0, 1000)
+        
     }
 
     const roleAdmin = localStorage.getItem('role');
@@ -186,16 +193,16 @@ const Header = () => {
                         <Nav className="row mx-2 order-1 order-md-2 flex-nowrap">
                             {auth.isAuthenticated() ?
                                 <>   
-                                    <Link class="mt-2 text-white hover-navbar dropdown-toggle" onClick={MoverMenuUser} id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="far fa-user-circle"></i> {userName ? userName : localStorage.getItem('username')}
-                                    </Link>
+                                    <label className="mt-2 text-white hover-navbar dropdown-toggle" onClick={MoverMenuUser} id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i className="far fa-user-circle"></i> {userName ? userName : localStorage.getItem('username')}
+                                    </label>
                                     <div className="dropdown">
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <Link class="dropdown-item text-white hover-navbar" to="/user/orders"><i class="far fa-clipboard"></i> Mis Pedidos</Link>
-                                            <Link class="dropdown-item text-white hover-navbar" ref={menuUser} to="/user/perfil"><i className="far fa-user"></i> Mis datos</Link>
+                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <Link className="dropdown-item text-white hover-navbar" to="/user/orders"><i className="far fa-clipboard"></i> Mis Pedidos</Link>
+                                            <Link className="dropdown-item text-white hover-navbar" ref={menuUser} to={`/user/perfil/${localStorage.getItem('id')}`}><i className="far fa-user"></i> Mis datos</Link>
                                         </div>
                                     </div>
-                                    <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}> <i class="fas fa-sign-out-alt"></i> SALIR</Nav.Link>
+                                    <Nav.Link className="text-white hover-navbar" onClick={LogUotHandler}> <i className="fas fa-sign-out-alt"></i> SALIR</Nav.Link>
                                 </>
                                 :
                                 <>
@@ -210,9 +217,9 @@ const Header = () => {
                             }
                         </Nav>
                         <Form className="w-100 px-3 d-md-none mt-3 mb-0">
-                            <Form.Group controlId="exampleForm.SelectCustom">
-                                <Form.Control onChange={onchangeSelectHandler} className="drop-menu text-white" as="select" custom>
-                                    <option defaultValue disabled selected>IR A...</option>
+                            <Form.Group>
+                                <Form.Control onChange={onchangeSelectHandler} defaultValue={0} ref={formSelect} className="drop-menu text-white" as="select" custom>
+                                    <option disabled>IR A...</option>
                                     <option value="/">INICIO</option>
                                     <option value="#Menu">MENU</option>
                                     <option value="#AboutUs">CONTACTO</option>

@@ -25,8 +25,9 @@ function App() {
 			<Route component={Header}/>
 			<Switch>
 				<PrivateRoute path="/admin" role={'admin'} component={MenuAdm} />
-				<PrivateRoute path="/user/orders" exact role={'user'} component={GetOrderUserPages} />
-				<PrivateRoute path="/user/perfil" role={'user'} component={UserProfilePage} />
+				<PrivateRoute path="/user/orders/:id" exact role={'user'} component={GetOrderUserPages} />
+				<PrivateRoute path="/user/orders/" exact role={'user'} component={GetOrderUserPages} />
+				<PrivateRoute path="/user/perfil/:id" role={'user'} component={UserProfilePage} />
 				<Route path="/plato/:id" exact role={'user'} component={PlatoPage} />
 				<Route path="/reg" exact component={RegUser} />
 				<Route exact path="/" component={HomePage} />

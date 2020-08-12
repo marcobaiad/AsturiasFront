@@ -114,13 +114,13 @@ const GetOderPages = () => {
 
  return (
     <div className="container">
-      <div class="btn-group w-100 row mx-0" role="group" aria-label="Grupo de Botones">
-        <button type="button" class="btn btn-secondary" onClick={HandlerClicTodas}>Todas</button>
-        <button type="button" class="btn btn-secondary" onClick={HandlerClicPendientes}>Pendientes</button>
-        <button type="button" class="btn btn-secondary" onClick={HandlerClicEnProceso}>En Proceso</button>
-        <button type="button" class="btn btn-secondary" onClick={HandlerClicCanceladas}>Canceladas</button>
-        <button type="button" class="btn btn-secondary" onClick={HandlerClicEnviadas}>Enviadas</button>
-        <button type="button" class="btn btn-secondary" onClick={HandlerClicFinalizadas}>Finalizadas</button>
+      <div className="btn-group w-100 row mx-0" role="group" aria-label="Grupo de Botones">
+        <button type="button" className="btn btn-secondary" onClick={HandlerClicTodas}>Todas</button>
+        <button type="button" className="btn btn-secondary" onClick={HandlerClicPendientes}>Pendientes</button>
+        <button type="button" className="btn btn-secondary" onClick={HandlerClicEnProceso}>En Proceso</button>
+        <button type="button" className="btn btn-secondary" onClick={HandlerClicCanceladas}>Canceladas</button>
+        <button type="button" className="btn btn-secondary" onClick={HandlerClicEnviadas}>Enviadas</button>
+        <button type="button" className="btn btn-secondary" onClick={HandlerClicFinalizadas}>Finalizadas</button>
     </div>
       <div className="row pt-5 overflow-auto" style={{height: "72vh"}}>
         {cards}
